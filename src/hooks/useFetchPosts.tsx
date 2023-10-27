@@ -20,7 +20,7 @@ function useFetchPosts() {
   }, [])
 
   const filteredPosts = search.length > 0
-    ? posts.filter(card => card.title.includes(search))
+    ? posts.filter(card => card.title.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
     : [];
 
   return { posts, search, handleSearch, filteredPosts }
