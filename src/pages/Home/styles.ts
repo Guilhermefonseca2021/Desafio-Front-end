@@ -9,6 +9,7 @@ export const Container = styled.div`
 
 export const HeaderBox = styled.div`
     margin-top: 4rem;
+    padding: 1.2rem;
     display: flex;
 
     justify-content: space-between;
@@ -34,6 +35,7 @@ export const HeaderBox = styled.div`
 
 export const CardBox = styled.div`
     margin-top: 1rem;
+    padding: 1.2rem;
     display: flex;
     flex-wrap: wrap;
 
