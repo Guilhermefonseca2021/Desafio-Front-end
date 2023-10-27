@@ -1,14 +1,10 @@
-import { useEffect } from "react"
 import useFetchPosts from "../../hooks/useFetchPosts"
 import Header from "../../components/Header"
 import { CardBox, Container, HeaderBox } from "./styles"
 import Card from "../../components/Card"
 
 export default function Home() {
-  useEffect(() => {
-  }, []) 
-
-  const { posts } = useFetchPosts()
+  const { posts, search, handleSearch, filteredPosts } = useFetchPosts()
 
   return (
     <div>
@@ -21,16 +17,26 @@ export default function Home() {
             <p>Ave.movie budget: $xxm</p>
           </div>
 
-          <input type="text" placeholder="Search the data" />
+          <input type="text" value={search} placeholder="Search the data" onChange={handleSearch} />
         </HeaderBox>
         <hr />
 
         <CardBox>
-          {posts.map(post => {
-            return(
-              <Card key={post.id} title={post.title} />
+          {
+            search.length > 0 ? (
+                filteredPosts.map(post => {
+                  return(
+                    <Card key={post.id} title={post.title} />
+                  )
+                })
+            ) : (
+                posts.map(post => {
+                  return(
+                    <Card key={post.id} title={post.title} />
+                  )
+                }) 
             )
-          })}
+          }
         </CardBox>
       </Container>
       

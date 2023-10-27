@@ -1,5 +1,5 @@
-import axios from 'axios'
-import { useState } from 'react'
+import axios from 'axios';
+import { useState, useEffect} from 'react';
 
 interface Posts {
   id: number,
@@ -8,11 +8,22 @@ interface Posts {
 
 function useFetchPosts() {
   const [posts, setPosts] = useState<Posts[]>([])
+  const [search, setSearch] = useState('')
 
-  axios('https://jsonplaceholder.typicode.com/todos')
+  function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
+    setSearch(event.target.value)
+  }
+  
+  useEffect(() => {
+    axios('https://jsonplaceholder.typicode.com/todos')
     .then(response => setPosts(response.data))
+  }, [])
 
-  return { posts }
-} 
+  const filteredPosts = search.length > 0
+    ? posts.filter(card => card.title.includes(search))
+    : [];
+
+  return { posts, search, handleSearch, filteredPosts }
+}
 
 export default useFetchPosts

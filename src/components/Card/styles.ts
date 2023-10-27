@@ -7,15 +7,16 @@ export const Container = styled.div`
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
 
-    max-width: 400px;
+    width: 200px;
+    height: 100px;
     background-color: ${({ theme }) => theme.COLORS.GRAY_300};
     border-radius: 8px;
 
     div {
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        justify-content: baseline;
     }
     
     div b {
